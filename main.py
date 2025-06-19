@@ -23,7 +23,7 @@ endpoint = "https://models.github.ai/inference"
 model = "openai/gpt-4.1-nano"
 
 loader = WebBaseLoader(
-    web_paths=("https://lilianweng.github.io/posts/2017-06-21-overview/",),
+    web_paths=("https://lt.wikipedia.org/wiki/Klaipėda",),
     bs_kwargs=dict(
         parse_only=bs4.SoupStrainer(
             class_=("post-content", "post-title", "post-header")
@@ -70,7 +70,7 @@ def generate_response(input_text):
 with st.form("my_form"):
     text = st.text_area(
         "Enter text:",
-        "What are the three key pieces of advice for learning how to code?",
+        "Do you know what is Klaipeda??",
     )
     submitted = st.form_submit_button("Submit")
     if submitted:
