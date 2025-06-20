@@ -23,16 +23,17 @@ model = "openai/gpt-4.1-nano"
 
 
 loader = WebBaseLoader(
-    web_paths=("https://lt.wikipedia.org/wiki/Klaipėda",),
-    bs_kwargs=dict(
-        parse_only=bs4.SoupStrainer(
-            class_=("post-content", "post-title", "post-header")
-        )
-    ),
+    web_paths=[
+        "https://lt.wikipedia.org/wiki/Klaipėda",
+        "https://lt.wikipedia.org/wiki/Klaipėdos_istorija",
+        "https://klaipeda.lt",
+        
+    ],
+    
 )
 docs = loader.load()
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=50)
 splits = text_splitter.split_documents(docs)
 
 embeddings=OpenAIEmbeddings(
@@ -46,7 +47,9 @@ vectorstore = InMemoryVectorStore(embeddings)
 _ = vectorstore.add_documents(documents=splits)
 
 retriever = vectorstore.as_retriever()
+
 prompt = hub.pull("rlm/rag-prompt")
+
 
 def format_docs(docs):
     
