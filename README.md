@@ -19,19 +19,26 @@
 
 ## Reikalingos bibliotekos
 
-```bash
+import streamlit as st
+from dotenv import load_dotenv
+import os
+
+from langchain_openai import OpenAIEmbeddings
+from langchain_openai.chat_models import ChatOpenAI
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_core.vectorstores import InMemoryVectorStore
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough
+from langchain_community.document_loaders import WebBaseLoader, TextLoader
+from langchain import hub
+from langchain_community.document_loaders import PyPDFLoader
 pip install streamlit python-dotenv langchain-openai langchain langchain-community pypdf
 
 
-
-
-
 Paruošimas
-Sukurk .env failą projekto šaknyje su savo OpenAI API raktu:
+Susikurk .env failą su savo OpenAI API raktu:
 
-ini
-Kopijuoti
-Redaguoti
+
 SECRET= tavo_openai_api_raktas
 Įkelk šiuos failus į projekto aplanką:
 
@@ -39,12 +46,9 @@ Klaipeda.txt (vietinis tekstinis failas su informacija apie Klaipėdą)
 
 Klaipeda-Wikipedia.pdf (PDF dokumentas)
 
-Jei reikia, pakeisk PDF failo kelią kode (kintamasis pdf_path).
 
 Paleidimas
-bash
-Kopijuoti
-Redaguoti
+
 streamlit run tavo_failo_pavadinimas.py
 Atidarys naršyklėje Streamlit aplikaciją, kur galėsi užduoti klausimus apie Klaipėdą ir matyti atsakymus kartu su naudotais šaltiniais.
 
