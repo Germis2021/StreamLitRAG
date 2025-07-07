@@ -57,7 +57,7 @@ for doc in docs:
         doc.metadata["source"] = doc.metadata.get("url", "Nežinomas šaltinis")
 
 # === Suskaidome į chunk'us ===
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 splits = text_splitter.split_documents(docs)
 
 # === Sukuriame embeddings ir vektorinę atmintį ===
