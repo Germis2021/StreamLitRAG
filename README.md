@@ -61,14 +61,3 @@ Streamlit UI su pokalbio istorija ir naudotų šaltinių atvaizdavimu
 
 Kontaktai
 Jei kyla klausimų ar pasiūlymų, kreipkitės: https://github.com/Germis2021
-
-Licencija
-MIT License © 2025
-
-yaml
-Kopijuoti
-Redaguoti
-
----
-
-Jei nori, galiu padėti parašyti README su papildomais techniniais aprašymais ar instrukcijomis!
