@@ -38,7 +38,18 @@ for doc in txt_docs:
 # === Sujungiame visus dokumentus ===
 docs += txt_docs
 
+# === Pridedame PDF dokumentą ===
+pdf_path = r"C:\Users\RYZAS10\Temporary\StreamLitRAG\Klaipeda-Wikipedia.pdf"
 
+if not os.path.exists(pdf_path):
+    raise FileNotFoundError(f"PDF failas nerastas: {pdf_path}")
+
+pdf_loader = PyPDFLoader(pdf_path)
+pdf_docs = pdf_loader.load()
+for doc in pdf_docs:
+    doc.metadata["source"] = "Klaipeda-Wikipedia.pdf"
+
+docs += pdf_docs
 
 # === Įsitikriname, kad kiekvienas dokumentas turi 'source' ===
 for doc in docs:
@@ -93,7 +104,7 @@ rag_chain = (
 
 # === Streamlit sąsaja ===
 st.set_page_config(page_title="Klaipėda Chatbot", layout="centered")
-st.title(" Klaipėdos Chatbotas")
+st.title("Klaipėdos Chatbotas")
 
 # Pokalbio istorija
 if "chat_history" not in st.session_state:
